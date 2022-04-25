@@ -2,9 +2,9 @@
 X,Y curve plotting
 """
 
-import utils, style
-from frame import Frame
-from button import Button
+from pygamets import utils, style
+from pygamets.frame import Frame
+from pygamets.button import Button
 import pygame as pg
 import math
 from collections import namedtuple
@@ -90,7 +90,7 @@ class PlotView(Frame):
 		# X,Y data to plot
 		X, Y = self.data
 		# Screen area
-		ix, iy, iw, ih = utils.apply_margins(self.rect_to_screen(self.int_frame()), self.style.margin, self.style.margin)
+		ix, iy, iw, ih = utils.apply_margins(self.rect_to_screen( *self.int_frame() ), self.style.margin, self.style.margin)
 
 		# Calculate ticks
 		xticks = get_ticks(min(X), max(X), self.style.maj_ticks, self.style.xrange)
@@ -126,7 +126,7 @@ class PlotView(Frame):
 		screen_rect = (orig_x, orig_y, plot_w, -plot_h)
 
 		# Obtain coordinate transformation functions
-		x2screan, y2screan = utils.map_to_screen(plot_rect, screen_rect)
+		x2screan, y2screan = utils.map_to_screen( *plot_rect, *screen_rect)
 	
 		# Draw axis
 		axis_color = self.style.axis_color
@@ -184,7 +184,7 @@ class PlotButton(Button):
 			# X,Y data to plot
 			X, Y = xy
 			# Screen area
-			ix, iy, iw, ih = utils.apply_margins(self.rect_to_screen(self.int_frame()), self.style.margin, self.style.margin)
+			ix, iy, iw, ih = utils.apply_margins( self.rect_to_screen( *self.int_frame() ), self.style.margin, self.style.margin)
 			px, py = min(X), min(Y)
 			pw, ph = max(X) - px, max(Y) - py
 			if pw <= 0: pw = 1.

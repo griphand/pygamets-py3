@@ -2,8 +2,8 @@
 Log window
 """
 
-import button, utils, style
-from frame import Frame
+from pygamets import button, utils, style
+from pygamets.frame import Frame
 import logging
 import pygame as pg
 
@@ -31,7 +31,7 @@ class ListView(Frame):
 
 	def draw(self):
 		Frame.draw(self)
-		ix, iy, iw, ih = self.rect_to_screen(self.int_frame())
+		ix, iy, iw, ih = self.rect_to_screen( *self.int_frame() )
 		ix += self.style.left_margin
 		iy += self.style.top_margin
 		fh = self.font.get_height()

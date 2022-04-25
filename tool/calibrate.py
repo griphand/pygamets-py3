@@ -23,7 +23,9 @@ def get_touched_point():
 	down, pos = None, None
 	while True:
 		events = read_events()
+		print( events )
 		if events:
+			print( events )
 			for e in events:
 				if e.pos:
 					pos = e.pos
@@ -39,7 +41,7 @@ def draw_xmark(s, color, xp, yp):
 	pg.draw.line(s, color, (xp, yp - XMARK_SZ), (xp, yp + XMARK_SZ))
 	pg.display.update()
 
-def get_calib_point(s, (x, y)):
+def get_calib_point(s, x, y):
 	"""
 	Draw cross mark at given point in coordinates relative to screen size (in the range 0..1)
 	and returns the touched point in raw touch-screen coordinates
@@ -59,15 +61,15 @@ def calibrate():
 	s = pg.display.set_mode()
 	screen_pts = [(.2, .2), (.8, .2), (.2, .8), (.8, .8), (.5, .5)]
 	while True:
-		touch_pts = [get_calib_point(s, pt) for pt in screen_pts]
+		touch_pts = [get_calib_point(s, *pt) for pt in screen_pts]
 		calib, dmax = calibration.build(screen_pts, touch_pts)
-		print 'max deviation %.1g' % dmax
+		print( 'max deviation %.1g' % dmax )
 		if dmax > .02:
-			print 'bad accuracy, please try again'
+			print( 'bad accuracy, please try again' )
 		else:
 			break
 	calibration.save(calib)
-	print 'calibration saved to', calibration.config_path()
+	print( 'calibration saved to', calibration.config_path() )
 
 
 if __name__=='__main__':

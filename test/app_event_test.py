@@ -14,7 +14,7 @@ from pygamets import app
 
 def print_event(e):
 	def fn():
-		print e
+		print( e )
 	return fn
 
 cnt, last_cnt = 0, 0
@@ -25,7 +25,7 @@ def loop_counter():
 
 def loop_timer():
 	global last_cnt
-	print cnt - last_cnt, 'loops per second'
+	print( cnt - last_cnt, 'loops per second' )
 	last_cnt = cnt
 
 app.init()

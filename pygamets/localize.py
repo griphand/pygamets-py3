@@ -2,7 +2,7 @@
 Localization support
 """
 
-import localization
+from pygamets import localization
 
 _str_map = localization.default
 

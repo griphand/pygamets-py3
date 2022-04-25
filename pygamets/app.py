@@ -19,7 +19,7 @@ import pygame as pg
 
 patch_events = sys.platform != 'win32'
 if patch_events:
-	import events, calibration
+	from pygamets import events, calibration
 
 # Application instance
 instance = None
@@ -113,7 +113,7 @@ class Application(object):
 		"""Add timer object"""
 		now = pg.time.get_ticks()
 		self.timers.append((now + timer.interval, timer))
-		self.timers.sort()
+#!!		self.timers.sort()
 
 	def process_timers(self):
 		"""Process registered timers"""
@@ -141,24 +141,26 @@ class Application(object):
 				else:
 					timer.cb = None
 		if rescheduled:
-			self.timers.sort()
+			pass
+#!!			self.timers.sort()
 
 	def read_events(self):
 		evs, sys_evs = [], events.read_events()
 		for e in sys_evs:
+#			print( e )
 			if e.down is not None:
 				self._down = e.down	
 				if not self._down and self.mouse_down and self.mouse_pos:
-					evs.append(pg.event.Event(pg.MOUSEBUTTONUP, button=1, pos=self.mouse_pos))
+					evs.append( pg.event.Event( pg.MOUSEBUTTONUP, button=1, pos=self.mouse_pos ) )
 					self.mouse_down = False
 			if e.pos is not None:
-				screen_pos = calibration.to_screen(e.pos, (self.screen_w, self.screen_h), self.calib)
+				screen_pos = calibration.to_screen( *e.pos, self.screen_w, self.screen_h, self.calib )
 				if self._down:
 					if not self.mouse_down:
-						evs.append(pg.event.Event(pg.MOUSEBUTTONDOWN, button=1, pos=screen_pos))
+						evs.append( pg.event.Event(pg.MOUSEBUTTONDOWN, button=1, pos=screen_pos))
 						self.mouse_down = True
 					elif self.mouse_pos and self.mouse_pos != screen_pos:
-						evs.append(pg.event.Event(
+						evs.append( pg.event.Event(
 							pg.MOUSEMOTION, buttons=(1, 0, 0), pos=screen_pos, rel=(screen_pos[0]-self.mouse_pos[0], screen_pos[1]-self.mouse_pos[1])
 						))
 				self.mouse_pos = screen_pos

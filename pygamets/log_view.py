@@ -2,8 +2,8 @@
 Log window
 """
 
-import gui, button, utils, style
-from list_view import ListView
+from pygamets import gui, button, utils, style
+from pygamets.list_view import ListView
 import logging
 import pygame as pg
 

@@ -14,7 +14,7 @@ The top level dictionary keys may have the following formats:
 See style.py for lookup algorithm details.
 """
 
-import progress
+from pygamets import progress
 
 default = {
 	# example configuration applied to all style instances

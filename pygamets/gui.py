@@ -18,7 +18,7 @@ class View(object):
 		self.interactive = False
 		self.has_focus = False
 
-	def cover_rect(self, (x, y, w, h)):
+	def cover_rect(self, x, y, w, h ):
 		"""
 		Returns True if the view area has non-empty intersection with given rect.
 		The rect coordinates are assumed to be in the parent coordinate system.
@@ -28,7 +28,7 @@ class View(object):
 			y + h <= self.y or self.y + self.h <= y
 		)
 
-	def cover_screen_pos(self, (x, y)):
+	def cover_screen_pos(self, x, y ):
 		"""Returns True if the view contains given point in the screen coordinate system"""
 		return not (
 			x < self.screen_x or self.screen_x + self.w <= x or
@@ -66,7 +66,7 @@ class View(object):
 	def bottom(self):
 		return self.y + self.h
 
-	def rect_to_screen(self, (x, y, w, h)):
+	def rect_to_screen(self, x, y, w, h ):
 		"""Translates rectangle coordinates to the screen coordinate system"""
 		return self.screen_x + x, self.screen_y + y, w, h
 
@@ -156,7 +156,7 @@ class View(object):
 
 	def find_interactive(self, pos):
 		"""Find interactive view at given screen position"""
-		if not self.cover_screen_pos(pos):
+		if not self.cover_screen_pos( *pos ):
 			return None
 		for c in self.children:
 			v = c.find_interactive(pos)
@@ -221,7 +221,7 @@ class Window(object):
 		Returns True if the view area has non-empty intersection with given rect.
 		The rect coordinates are assumed to be in the parent coordinate system.
 		"""
-		return self.view.cover_rect(rect)
+		return self.view.cover_rect( *rect )
 
 	def cover_screen_pos(self, pos):
 		"""Returns True if the view contains given point in the screen coordinate system"""

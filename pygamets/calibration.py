@@ -95,12 +95,12 @@ def load():
 	module = imp.load_module(config_file, m[0], m[1], m[2])
 	return module.calib
 
-def to_screen_rel((x, y), calib):
+def to_screen_rel( x, y, calib ):
 	"""Convert touch screen point (x, y) to relative screen coordinate (in 0..1 range)"""
 	(ax, bx, cx), (ay, by, cy) = calib
 	return max(0., min(1., x*ax + y*bx + cx)), max(0., min(1., x*ay + y*by + cy))
 
-def to_screen((x, y), (w, h), calib):
+def to_screen(x, y, w, h, calib):
 	"""Convert touch screen point (x, y) to screen coordinate given the screen width, height tuple and calibration"""
-	rx, ry = to_screen_rel((x, y), calib)
+	rx, ry = to_screen_rel( x, y, calib )
 	return min(w, int(w*rx)), min(h, int(h*ry))

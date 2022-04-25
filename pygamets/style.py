@@ -2,7 +2,7 @@
 Cascading style sheets for GUI attributes
 """
 
-import styles
+from pygamets import styles
 
 _styles_map = styles.default
 
