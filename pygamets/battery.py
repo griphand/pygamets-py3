@@ -2,7 +2,7 @@
 Battery charge indicator
 """
 
-from pygamets import app, gui, style, utils
+from . import app, gui, style, utils
 import pygame as pg
 
 class BatteryIndicator(gui.View):

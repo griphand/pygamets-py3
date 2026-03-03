@@ -18,8 +18,7 @@ pg.display.set_mode()
 
 while True:
 	for e in pg.event.get():
-		print( e )
 		if e.type == pg.MOUSEBUTTONUP:
-			print( e.pos )
+			print e.pos
 
 

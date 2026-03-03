@@ -2,9 +2,9 @@
 Label class
 """
 
-from pygamets import gui, style, utils
+from . import gui, style, utils
 import pygame as pg
-from pygamets.localize import localize
+from .localize import localize
 
 class TextLabel(gui.View):
 	"""The plain text label"""

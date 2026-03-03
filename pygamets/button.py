@@ -2,11 +2,11 @@
 Button classes
 """
 
-from pygamets import app, style, utils
+from . import app, style, utils
 import pygame as pg
-from pygamets.gui import Signal
-from pygamets.frame import Frame
-from pygamets.localize import localize
+from .gui import Signal
+from .frame import Frame
+from .localize import localize
 
 class Button(Frame):
 	"""The button is interactive view with several ready to use signals"""

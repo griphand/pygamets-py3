@@ -1,6 +1,6 @@
 
-from pygamets import gui, plot, button, label, style, utils
-from pygamets.frame import Frame
+from . import gui, plot, button, label, style, utils
+from .frame import Frame
 
 class PlotNotebook(gui.Window):
 	"""The window showing the set of X,Y data plots"""

@@ -4,7 +4,7 @@ Progress indicator widget
 
 import pygame as pg
 from pygame import gfxdraw
-from pygamets import app, gui, style, utils
+from . import app, gui, style, utils
 import math
 
 class PieProgressIndicator(gui.View):

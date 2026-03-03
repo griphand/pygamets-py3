@@ -2,7 +2,7 @@
 Window classes
 """
 
-from pygamets import gui, style, utils
+from . import gui, style, utils
 import pygame as pg
 
 class Frame(gui.View):
